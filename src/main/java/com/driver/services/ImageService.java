@@ -33,8 +33,8 @@ public class ImageService {
 
         blog.setImageList(imageList);
 
-        blogRepository2.save(blog);
         imageRepository2.save(image);
+        blogRepository2.save(blog);
 
         return image;
     }

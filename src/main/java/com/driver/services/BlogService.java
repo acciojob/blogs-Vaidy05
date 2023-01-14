@@ -68,6 +68,8 @@ public class BlogService {
 
         Blog blog = blogRepository1.findById(blogId).get();
 
+        image.setBlog(blog);
+
         List<Image> imageList = blog.getImageList();
 
         if(imageList==null){
