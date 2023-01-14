@@ -13,8 +13,4 @@ import java.util.ArrayList;
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
 
-
-    public default User findByUsername(String username){
-       return null;
-    }
 }

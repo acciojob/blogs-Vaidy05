@@ -31,6 +31,8 @@ public class UserService {
 
     public User findUserByUsername(String username){
 
+        userRepository3.findByUsername(username);
+
         List<User> userList = userRepository3.findAll();
 
         for(User user : userList){
