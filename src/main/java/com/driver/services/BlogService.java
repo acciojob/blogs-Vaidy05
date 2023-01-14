@@ -19,7 +19,7 @@ public class BlogService {
     BlogRepository blogRepository1;
 
     @Autowired
-    ImageRepository imageRepository1;
+    ImageService imageService;
 
     @Autowired
     UserRepository userRepository1;
@@ -41,6 +41,8 @@ public class BlogService {
         User user = userRepository1.findById(userId).get();
 
         Blog blog = new Blog(title,content);
+
+        blog.setUser(user);
 
         List<Blog> blogList = user.getBlogList();
 
@@ -64,11 +66,10 @@ public class BlogService {
 
     public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog after creating it
-        Image image = new Image(description,dimensions);
 
         Blog blog = blogRepository1.findById(blogId).get();
 
-        image.setBlog(blog);
+        Image image = imageService.createAndReturn(blog,description,dimensions);
 
         List<Image> imageList = blog.getImageList();
 
@@ -81,11 +82,20 @@ public class BlogService {
         blog.setImageList(imageList);
 
         blogRepository1.save(blog);
-        imageRepository1.save(image);
+
     }
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
+        Blog blog = blogRepository1.findById(blogId).get();
+
+        List<Image> imageList = blog.getImageList();
+
+        if(imageList!=null){
+            for(Image image : imageList){
+                imageService.deleteImage(image);
+            }
+        }
         blogRepository1.deleteById(blogId);
     }
 }
