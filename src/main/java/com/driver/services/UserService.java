@@ -31,16 +31,6 @@ public class UserService {
 
     public User findUserByUsername(String username){
 
-        userRepository3.findByUsername(username);
-
-        List<User> userList = userRepository3.findAll();
-
-        if(userList!=null) {
-            for (User user : userList) {
-                if (user.getUsername().equals(username))
-                    return user;
-            }
-        }
-        return null;
+        return userRepository3.findByUsername(username);
     }
 }
