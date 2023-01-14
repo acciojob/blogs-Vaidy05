@@ -42,11 +42,11 @@ public class BlogService {
 
         Blog blog = new Blog(title,content);
 
-        List<Blog> blogList = user.getBlogsWritten();
+        List<Blog> blogList = user.getBlogList();
 
         blogList.add(blog);
 
-        user.setBlogsWritten(blogList);
+        user.setBlogList(blogList);
 
         userRepository1.save(user);
         blogRepository1.save(blog);

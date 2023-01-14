@@ -34,7 +34,7 @@ public class UserService {
         List<User> userList = userRepository3.findAll();
 
         for(User user : userList){
-            if(user.getUserName().equals(username))
+            if(user.getUsername().equals(username))
                 return user;
         }
 

@@ -21,7 +21,7 @@ public class Blog {
     private String content;
 
     @CreationTimestamp
-    private Date publishedDate;
+    private Date PubDate;
 
 
     @ManyToOne
@@ -30,6 +30,7 @@ public class Blog {
 
     @OneToMany(mappedBy = "image",cascade = CascadeType.ALL)
     private List<Image> imageList;
+
 
     public int getId() {
         return id;
@@ -55,12 +56,12 @@ public class Blog {
         this.content = content;
     }
 
-    public Date getPublishedDate() {
-        return publishedDate;
+    public Date getPubDate() {
+        return PubDate;
     }
 
-    public void setPublishedDate(Date publishedDate) {
-        this.publishedDate = publishedDate;
+    public void setPubDate(Date pubDate) {
+        PubDate = pubDate;
     }
 
     public List<Image> getImageList() {
