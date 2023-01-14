@@ -35,11 +35,12 @@ public class UserService {
 
         List<User> userList = userRepository3.findAll();
 
-        for(User user : userList){
-            if(user.getUsername().equals(username))
-                return user;
+        if(userList!=null) {
+            for (User user : userList) {
+                if (user.getUsername().equals(username))
+                    return user;
+            }
         }
-
         return null;
     }
 }

@@ -44,6 +44,10 @@ public class BlogService {
 
         List<Blog> blogList = user.getBlogList();
 
+        if(blogList==null){
+            blogList=new ArrayList<>();
+        }
+
         blogList.add(blog);
 
         user.setBlogList(blogList);
@@ -65,6 +69,10 @@ public class BlogService {
         Blog blog = blogRepository1.findById(blogId).get();
 
         List<Image> imageList = blog.getImageList();
+
+        if(imageList==null){
+            imageList = new ArrayList<>();
+        }
 
         imageList.add(image);
 

@@ -5,6 +5,8 @@ import com.driver.repositories.BlogRepository;
 import com.driver.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +24,10 @@ public class ImageService {
         image.setBlog(blog);
 
         List<Image> imageList = blog.getImageList();
+        if(imageList==null)
+        {
+            imageList=new ArrayList<>();
+        }
 
         imageList.add(image);
 
@@ -44,20 +50,20 @@ public class ImageService {
     public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-        if(screenDimensions.split("X").length==2 && image!=null) {
+        if(screenDimensions.split("X").length==2 || image!=null) {
             String imageLength = "";
-            imageLength = imageLength + image.getDimensions().charAt(0) + image.getDimensions().charAt(1);
+            imageLength = image.getDimensions().split("X")[0];
 
             String screenLength = "";
-            screenLength = screenLength + screenDimensions.charAt(0) + screenDimensions.charAt(1);
+            screenLength = screenDimensions.split("X")[0];
 
             int length = Integer.parseInt(screenLength) / Integer.parseInt(imageLength);
 
             String imagebreadth = "";
-            imagebreadth = imagebreadth + image.getDimensions().charAt(3) + image.getDimensions().charAt(4);
+            imagebreadth = image.getDimensions().split("X")[1];
 
             String screenbreadth = "";
-            screenbreadth = screenbreadth + screenDimensions.charAt(3) + screenDimensions.charAt(4);
+            screenbreadth = screenDimensions.split("X")[1];
 
             int breadth = Integer.parseInt(screenbreadth) / Integer.parseInt(imagebreadth);
             return length * breadth;
