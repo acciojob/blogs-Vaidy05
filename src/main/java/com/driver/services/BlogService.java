@@ -24,6 +24,9 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
+    @Autowired
+    ImageRepository imageRepository;
+
     public List<Blog> showBlogs(){
         //find all blogs
        List<Blog> blogList = blogRepository1.findAll();
@@ -93,7 +96,7 @@ public class BlogService {
 
         if(imageList!=null){
             for(Image image : imageList){
-                imageService.deleteImage(image);
+                imageRepository.delete(image);
             }
         }
         blogRepository1.deleteById(blogId);
