@@ -1,6 +1,7 @@
 package com.driver.repositories;
 
 import com.driver.models.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
-    public default void findByUsername(){
 
+
+    public default User findByUsername(String username){
+       return null;
     }
 }
